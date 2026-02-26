@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium wellness theme variables */
+@layer base {
+  :root {
+    --background: 0 0% 98.5%;           /* stone-50 — warm off-white */
+    --foreground: 240 5.9% 10%;         /* deep slate text */
+    --card: 0 0% 100% / 0.85;           /* semi-transparent for glass effect */
+    --card-foreground: 240 5.9% 10%;
+    --popover: 0 0% 100% / 0.95;
+    --popover-foreground: 240 5.9% 10%;
+    --primary: 162 76% 28%;             /* deep emerald */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 94.5%;            /* stone-100 */
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 0 0% 94.5%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 36 93% 64%;               /* warm gold */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91% / 0.6;        /* softer border */
+    --input: 220 13% 91%;
+    --ring: 162 76% 28%;                /* emerald focus ring */
+    --radius: 0.875rem;                 /* larger, more premium corners */
+
+    /* Sidebar (if your layout uses these) */
+    --sidebar-background: 0 0% 99%;
+    --sidebar-foreground: 240 5.9% 10%;
+    --sidebar-primary: 162 76% 28%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 36 93% 64% / 0.12;
+    --sidebar-accent-foreground: 162 76% 28%;
+    --sidebar-border: 220 13% 91% / 0.5;
+
+    /* Wellness chart colors */
+    --chart-1: 162 76% 40%;             /* emerald */
+    --chart-2: 36 93% 60%;              /* gold */
+    --chart-3: 197 37% 40%;             /* soft teal */
+    --chart-4: 162 76% 55%;             /* light emerald */
+    --chart-5: 36 93% 70%;              /* light gold */
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;         /* deep slate-950 */
+    --foreground: 0 0% 98%;
+    --card: 240 10% 4.5% / 0.85;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 4.5% / 0.95;
+    --popover-foreground: 0 0% 98%;
+    --primary: 162 76% 45%;             /* brighter emerald in dark */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 36 93% 68%;               /* vibrant gold in dark */
+    --accent-foreground: 240 10% 3.9%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9% / 0.6;
+    --input: 240 3.7% 15.9%;
+    --ring: 162 76% 45%;
+
+    /* Sidebar dark */
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 162 76% 45%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 36 93% 68% / 0.15;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9% / 0.5;
+
+    /* Charts brighter in dark mode */
+    --chart-1: 162 76% 55%;
+    --chart-2: 36 93% 70%;
+    --chart-3: 197 37% 55%;
+    --chart-4: 162 76% 65%;
+    --chart-5: 36 93% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "liga" 1, "calt" 1;
+  }
+
+  /* Glassmorphic card style — apply class="card-glass" to cards */
+  .card-glass {
+    @apply bg-card backdrop-blur-xl border border-border/50 shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)];
+  }
+
+  /* Subtle hover lift for interactive elements */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95;
+  }
+
+  /* Focus ring using primary color */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Custom utilities for gold/savings highlights */
+@layer utilities {
+  .gold-accent {
+    @apply text-amber-600 dark:text-amber-400 font-semibold;
+  }
+  .gold-bg {
+    @apply bg-gradient-to-r from-amber-500/15 to-amber-400/5 dark:from-amber-600/25 dark:to-amber-500/10;
+  }
+  .gold-border {
+    @apply border-amber-500/30 dark:border-amber-400/30;
+  }
+  .savings-badge {
+    @apply bg-gradient-to-r from-amber-500 to-amber-400 text-white font-bold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-shadow;
+  }
+}
+
+/* Hide Base44 edit banner on all pages */
+a[href*="base44.app"], [data-base44-edit], .base44-edit-badge, div[class*="base44-edit"], footer a[href*="base44"] {
+  display: none !important;
+  visibility: hidden !important;
+} 
